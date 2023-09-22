@@ -9,6 +9,11 @@ app.use(express.json())
 app.use('/auth', authRouter)
 
 
+app.post("/post", (req, res) => {
+    console.log("Connected to React");
+    res.redirect("/");
+});
+
 const start = async() => {
     try {
 

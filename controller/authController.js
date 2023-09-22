@@ -25,7 +25,7 @@ class authController {
                 return res.status(400).json({ message: "User already exists" })
             }
             const hashPassword = bcrypt.hashSync(password, 7);
-            const userRole = await Role.findOne({ value: "ADMIN" })
+            const userRole = await Role.findOne({ value: "USER" })
             const user = new User({ username, password: hashPassword, roles: [userRole.value] })
             await user.save()
             return res.json({ message: "Great Registration" })
