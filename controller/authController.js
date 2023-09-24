@@ -25,7 +25,7 @@ class authController {
                 return res.status(400).json({ message: "User already exists" })
             }
             const hashPassword = bcrypt.hashSync(password, 7);
-            const userRole = await Role.findOne({ value: "USER" })
+                const userRole = await Role.findOne({ value: "USER" })
             const user = new User({ username, password: hashPassword, roles: [userRole.value] })
             await user.save()
             return res.json({ message: "Great Registration" })
@@ -54,10 +54,15 @@ class authController {
     }
     async getUsers(req, res) {
         try {
-             const users =  await User.find()
-            res.json(users)
+            const userRole = new Role()
+            const adminRole = new Role({value:"ADMIN"})
+            await userRole.save()
+            await adminRole.save()
+            res.json("server work")
+           //  const users =  await User.find()
+           // res.json(users)
         } catch (e) {
-
+          console.log(e)
         }
     }
 }

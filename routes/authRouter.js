@@ -9,7 +9,7 @@ router.post('/registration', [
     check('password', "Password size is 4 or 10 symbol").isLength({min:4 , max:10})
 ], controller.registration)
 router.post('/login', controller.login)
-router.get('/users', authMiddleware, controller.getUsers)
+router.get('/users', controller.getUsers)
 
 
 module.exports = router
